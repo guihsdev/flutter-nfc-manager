@@ -93,7 +93,12 @@ class NfcManagerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   private fun handleNfcIsAvailable(call: MethodCall, result: Result) {
-    result.success(adapter?.isEnabled == true)
+    when {
+      adapter == null -> result.success(null)
+      adapter.isEnabled -> result.success(true)
+      else -> result.success(false)
+    }
+    // result.success(adapter?.isEnabled == true)
   }
 
   private fun handleNfcStartSession(call: MethodCall, result: Result) {

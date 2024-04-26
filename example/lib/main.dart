@@ -22,7 +22,7 @@ class MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(title: Text('NfcManager Plugin Example')),
         body: SafeArea(
-          child: FutureBuilder<bool>(
+          child: FutureBuilder<bool?>(
             future: NfcManager.instance.isAvailable(),
             builder: (context, ss) => ss.data != true
                 ? Center(child: Text('NfcManager.isAvailable(): ${ss.data}'))
